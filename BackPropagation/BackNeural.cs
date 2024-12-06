@@ -205,7 +205,20 @@ namespace Backprop
 
         internal double getMSE()
         {
-            throw new NotImplementedException();
+            double mse = 0.0;
+
+            // Iterate through all output neurons
+            for (int x = 0; x < oneuron.Length; x++)
+            {
+                // Calculate squared error for each neuron
+                double error = desiredout[x] - oneuron[x].getOActivation();
+                mse += error * error;
+            }
+
+            // Divide by the number of output neurons to get the mean
+            mse /= oneuron.Length;
+
+            return mse;
         }
     }//end of neural net
 }
